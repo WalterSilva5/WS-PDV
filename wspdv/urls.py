@@ -1,6 +1,6 @@
 from django.urls import path
 #views
-from wspdv.views import index, vendas, produtos, clientes, caixa
+from wspdv.views.views import *
 urlpatterns = [
    path('', index, name='index'),
    path('vendas', vendas, name='vendas'),

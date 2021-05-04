@@ -5,21 +5,68 @@
 <div id="produtos" class="col-sm-11 container" style="height:700px;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="d-flex flex-row">
+
+            <a data-toggle="modal" data-target="#modal-adicionar-produto">
+                <div class="p-2 btn btn-outline-secondary font-weight-bold" style="width:170px;">
+                    <img src="{% static 'wspdv/img/icons/adicionar.png' %}" alt="" style="width:30px;">
+                    ADICIONAR
+                </div>
+            </a>
+            <a data-toggle="tab" href="#menu2">
+                <div class="p-2 btn btn-outline-secondary font-weight-bold" style="width:170px;">
+                    <img src="{% static 'wspdv/img/icons/editar.png' %}" alt="" style="width:30px;">
+                    EDITAR
+                </div>
+            </a>
             <div class="p-2 btn btn-outline-secondary font-weight-bold" style="width:170px;">
-                <img src="{% static 'wspdv/img/icons/vendacaixa.png' %}" alt="" style="width:30px;">
-                ADICIONAR
-            </div>
-            <div class="p-2 btn btn-outline-secondary font-weight-bold" style="width:170px;">
-                <img src="{% static 'wspdv/img/icons/vendacaixa.png' %}" alt="" style="width:30px;">
-                EDITAR
-            </div>
-            <div class="p-2 btn btn-outline-secondary font-weight-bold" style="width:170px;">
-                <img src="{% static 'wspdv/img/icons/vendacaixa.png' %}" alt="" style="width:30px;">
+                <img src="{% static 'wspdv/img/icons/deletar.png' %}" alt="" style="width:30px;">
                 REMOVER
             </div>
         </div>
     </nav>
-    <div class="col-12 border border-danger" style="min-height:630px"></div>
+    <div class="col-12 border border-danger" style="min-height:630px">
+
+    </div>
+
+    <!-- modal adicionar produto -->
+    <div class="modal fade" id="modal-adicionar-produto" tabindex="-1" role="dialog"
+        aria-labelledby="modal-adicionar-produto" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">ADICIONAR PRODUTO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: rgb(230, 230, 230);">
+                    <!-- form adicionar produto -->
+                    <form class="font-weight-bold">
+                        <div class="form-group">
+                            <label for="codigo">CODIGO</label>
+                            <input type="text" class="form-control" id="codigo" required placeholder="CODIGO DO PRODUTO" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="codigo">DESCRIÇÃO</label>
+                            <input type="text" class="form-control" id="descricao"  required placeholder="NOME DO PRODUTO">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="preco">PREÇO</label>
+                                <input type="text" class="form-control" id="preco" placeholder="R$: 00.00">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">SALVAR</button>
+                    </form>
+                    <!-- fim form adicionar produto -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim modal adicionar produto -->
 </div>
+
+
+
 <!-- END PRODUTOS -->
 {% endblock content %}
