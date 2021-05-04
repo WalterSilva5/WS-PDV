@@ -23,7 +23,7 @@
     <!-- MODAL JANELA DE VENDA -->
     <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 100%;" role="document" >
+        <div class="modal-dialog" style="max-width: 100%;" role="document">
             <div class="modal-content" style="background-color: rgb(240, 240, 240);">
                 <div class="modal-header border border-primary" style="height:55px;">
                     <h5 class="modal-title h6" id="exampleModalLabel">VENDA CAIXA (PDV)</h5>
@@ -34,7 +34,8 @@
                         <img src="{% static 'wspdv/img/icons/cliente.png' %}" style="width:20px;">
                         CLIENTE (F5)</button>
                     <div class="container col-3"></div>
-                    <button class="btn btn-sm btn-outline-dark bg-success ml-2 font-weight-bold">CONFIGURAÇÕES (F10)</button>
+                    <button class="btn btn-sm btn-outline-dark bg-success ml-2 font-weight-bold">CONFIGURAÇÕES
+                        (F10)</button>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -71,10 +72,26 @@
                             </div>
                         </form>
                     </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">1 - </th>
+                                <td style="width:700px;">FEIJAO</td>
+                                <td>2 X R$ 5.00</td>
+                                <td>R$: 10,00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2 - </th>
+                                <td>ARROZ</td>
+                                <td>3 X R$ 4.00</td>
+                                <td>R$: 12,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer" style="height:60px;">
                     <h1 class="font-weight-bold text-primary">
-                        TOTAL = R$ 00.00
+                        TOTAL = R$ 22.00
                     </h1>
                 </div>
             </div>
