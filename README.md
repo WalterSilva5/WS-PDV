@@ -1,6 +1,7 @@
 # WS-PDV
 
-![SYSTEM](https://link)
+![alt](https://raw.githubusercontent.com/WalterSilva5/WS-PDV/main/system.jpg)
+
 necessario ter o python 3.6 ou superior instalado
 
 
