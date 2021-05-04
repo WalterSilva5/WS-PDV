@@ -1,27 +1,85 @@
 {% extends "main.html" %}
+{% load static %}
 {% block content %}
 <!-- VENDAS -->
-<div class="col-sm-11 container" style="height:700px;">
-    <div id="vendas">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border boder-secondary">
-            <div id="my-nav">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <h3 class="mt-2 font-weight-bold">VENDAS</h3>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"><button class="btn btn-outline-secondary font-weight-bold">VENDA
-                                CAIXA (PDV)</button></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"><button
-                                class="btn btn-outline-secondary  font-weight-bold">PEDIDO</button></a>
-                    </li>
-                </ul>
+<div id="vendas" class="col-sm-11 container" style="height:700px;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="d-flex flex-row">
+            <div class="p-2 btn btn-outline-secondary font-weight-bold" style="width:220px;" data-toggle="modal"
+                data-target="#exampleModal">
+                <img src="{% static 'wspdv/img/icons/vendacaixa.png' %}" alt="" style="width:30px;">
+                VENDA CAIXA (PDV)
             </div>
-        </nav>
-    </div>
+            <div class="p-2 btn btn-outline-secondary font-weight-bold" style="width:170px;">
+                <img src="{% static 'wspdv/img/icons/vendacaixa.png' %}" alt="" style="width:30px;">
+                ORÇAMENTO
+            </div>
+        </div>
+    </nav>
+
+
     <div class="col-12 border border-danger" style="min-height:630px"></div>
-</div>
-<!-- END VENDAS -->
-{% endblock content %}
+
+    <!-- MODAL JANELA DE VENDA -->
+    <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 100%;" role="document" >
+            <div class="modal-content" style="background-color: rgb(240, 240, 240);">
+                <div class="modal-header border border-primary" style="height:55px;">
+                    <h5 class="modal-title h6" id="exampleModalLabel">VENDA CAIXA (PDV)</h5>
+                    <button class="btn btn-sm btn-outline-dark bg-success ml-2 font-weight-bold">CONCLUIR (F2)</button>
+                    <button class="btn btn-sm btn-outline-dark bg-success ml-2 font-weight-bold">DESC (F3)</button>
+                    <button class="btn btn-sm btn-outline-dark bg-success ml-2 font-weight-bold">OBS (F4)</button>
+                    <button class="btn btn-sm btn-outline-dark bg-success ml-2 font-weight-bold">
+                        <img src="{% static 'wspdv/img/icons/cliente.png' %}" style="width:20px;">
+                        CLIENTE (F5)</button>
+                    <div class="container col-3"></div>
+                    <button class="btn btn-sm btn-outline-dark bg-success ml-2 font-weight-bold">CONFIGURAÇÕES (F10)</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body border border-danger" style="min-height: 570px;">
+                    <div class="col-12 border border-secondary" style="height:40px;">
+                        <form>
+                            <div class="col-12 row">
+                                <div>
+                                    <input type="text" class="form-control font-weight-bold border border-primary"
+                                        id="codigo"
+                                        placeholder="INSIRA O CODIGO, NOME, OU USE O LEITOR DE CÓDIGO DE BARRAS"
+                                        style="width:700px;">
+                                </div>
+                                <div class="ml-2" style="width:100;">
+                                    <small class="font-weight-bold" style="width:20px;">QUANT:</small>
+                                    <input type="text"
+                                        class="form-control font-weight-bold border border-primary float-right"
+                                        style="width:70px;">
+                                </div>
+                                <div class="ml-2" style="width:100;">
+                                    <small class="font-weight-bold" style="width:20px;">PREÇO:</small>
+                                    <input type="text"
+                                        class="form-control font-weight-bold border border-primary float-right"
+                                        style="width:70px;">
+                                </div>
+                                <div class="ml-2" style="width:100;">
+                                    <small class="font-weight-bold" style="width:20px;">TOTAL:</small>
+                                    <h3 class="float-right font-weight-bold ml-2">00.00</h3>
+                                </div>
+                                <div class="ml-2 ml-2" style="width:100;">
+                                    <button class="btn btn-sm btn-success "><small>LANÇAR</small></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer" style="height:60px;">
+                    <h1 class="font-weight-bold text-primary">
+                        TOTAL = R$ 00.00
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL JANELA DE VENDA -->
+    <!-- END VENDAS -->
+    {% endblock content %}
