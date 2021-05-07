@@ -3,5 +3,5 @@ function imprimir_cupom() {
     var win = window.open();
     win.document.write(conteudo);
     win.print();
-    win.close();
+    //win.close();
 }
