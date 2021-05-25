@@ -11,5 +11,5 @@ instale o requirements.txt
 inicie o servidor django
     ./startServer.bat
 
-inicie o programa:
-    python -m WindowsAPP.py
+acesse pelo link: <a href="http://localhost">http://localhost</a>
+    
