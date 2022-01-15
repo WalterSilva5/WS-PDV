@@ -14,7 +14,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path, include
+
+from drf_spectacular.views import (SpectacularAPIView,
+                                   SpectacularRedocView, SpectacularSwaggerView)
+from wsierpapp.views import (
+    usuario_view, produto_view, categoria_view, venda_view)
+from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
+    #swagger
+    path('swagger-file/', SpectacularAPIView.as_view(), name='schema'),
+    # redoc
+    path('redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    # swagger
+    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'),
+         name='swagger-ui'),
+    #usuario
+    path('api/usuario/', usuario_view.UsuarioViewSet.as_view(), name='usuario'),
+    #login
+    path('api/login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/login/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    #index
+    # re_path(r'', front_view.index, name='index'),
 ]

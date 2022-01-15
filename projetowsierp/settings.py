@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os 
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,47 +27,75 @@ SECRET_KEY = 'django-insecure-+igirc)hiozyca58+v$l1_y-))tr8-jd_cyd-_y_!z8f)t4cjs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_METHODS = [
+    'DELETE', 
+    'GET', 
+    'OPTIONS', 
+    'PATCH', 
+    'POST', 
+    'PUT', 
+]
+CORS_ALLOWED_HEADERS = [
+    'accept', 
+    'accept-encoding', 
+    'authorization', 
+    'content-type', 
+    'dnt', 
+    'origin', 
+    'user-agent', 
+    'x-csrftoken', 
+    'x-requested-with', 
+    'Access-Control-Allow-Origin', 
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'wsierpapp',
+    'django.contrib.admin', 
+    'django.contrib.auth', 
+    'django.contrib.contenttypes', 
+    'django.contrib.sessions', 
+    'django.contrib.messages', 
+    'django.contrib.staticfiles', 
+    'wsierpapp', 
+    'drf_spectacular', 
+    'rest_framework', 
+    'rest_framework.authtoken', 
+    'corsheaders', 
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware', 
+    'django.contrib.sessions.middleware.SessionMiddleware', 
+    "corsheaders.middleware.CorsMiddleware", 
+    "django.middleware.common.CommonMiddleware", 
+    'django.middleware.csrf.CsrfViewMiddleware', 
+    'django.contrib.auth.middleware.AuthenticationMiddleware', 
+    'django.contrib.messages.middleware.MessageMiddleware', 
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', 
 ]
 
 ROOT_URLCONF = 'projetowsierp.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'BACKEND': 'django.template.backends.django.DjangoTemplates', 
+        'DIRS': ['wsierpapp/templates'], 
+        'APP_DIRS': True, 
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+                'django.template.context_processors.debug', 
+                'django.template.context_processors.request', 
+                'django.contrib.auth.context_processors.auth', 
+                'django.contrib.messages.context_processors.messages', 
+            ], 
+        }, 
+    }, 
 ]
 
 WSGI_APPLICATION = 'projetowsierp.wsgi.application'
@@ -76,8 +106,8 @@ WSGI_APPLICATION = 'projetowsierp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': BASE_DIR / 'db.sqlite3', 
     }
 }
 
@@ -87,17 +117,17 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', 
+    }, 
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', 
+    }, 
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', 
+    }, 
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', 
+    }, 
 ]
 
 
@@ -105,17 +135,70 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'pt-br'
+
 TIME_ZONE = 'America/Sao_Paulo'
+USE_TZ = False
 USE_I18N = True
-USE_TZ = True
 USE_L10N = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days = 2), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days = 7), 
+    'ROTATE_REFRESH_TOKENS': False, 
+    'BLACKLIST_AFTER_ROTATION': True, 
+
+    'ALGORITHM': 'HS256', 
+    'SIGNING_KEY': SECRET_KEY, 
+    'VERIFYING_KEY': None, 
+    'AUDIENCE': None, 
+    'ISSUER': None, 
+
+    'AUTH_HEADER_TYPES': ('Bearer', ), 
+    'USER_FIELD': 'id', 
+    'USER_CLAIM': 'user', 
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken', ), 
+    'TOKEN_TYPE_CLAIM': 'token_type', 
+
+    'JTI_CLAIM': 'jti', 
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser', 
+
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp', 
+    'SLIDING_TOKEN_LIFETIME': timedelta(days = 10), 
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days = 20)
+}
+
+
+# DRF
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', 
+    ), 
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication', 
+        'rest_framework.authentication.SessionAuthentication', 
+        'rest_framework.authentication.BasicAuthentication', 
+    ), 
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema', 
+    
+}
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API DO SISTEMA WSI ERP', 
+    'DESCRIPTION': 'API DO SISTEMA WSI ERP', 
+    'VERSION': '1.0.0', 
+    'LICENSE': 'MIT', 
+    'EMAIL': 'waltersilva123454@gmail.com'
+}
